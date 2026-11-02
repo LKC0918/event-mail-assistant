@@ -1,0 +1,25 @@
+[Unit]
+Description=Event monitoring and email confirmation assistant
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=event-assistant
+Group=event-assistant
+WorkingDirectory=/opt/event-mail-assistant
+EnvironmentFile=-/etc/event-assistant.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m event_assistant --root /var/lib/event-mail-assistant run
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=200
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/event-mail-assistant
+
+[Install]
+WantedBy=multi-user.target

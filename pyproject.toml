@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "event-mail-assistant"
+version = "0.1.0"
+description = "活动监测、邮件逐场确认与独立执行的通用演示模板"
+requires-python = ">=3.10"
+dependencies = []
+license = {text = "MIT"}
+
+[project.scripts]
+event-assistant = "event_assistant.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["event_assistant*"]
